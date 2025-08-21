@@ -1,7 +1,10 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src",
+        "Trabalho-1-p1"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "c:\\Users\\arthu\\Documents\\Analise de Algoritmos\\lib\\junit-platform-console-standalone-1.13.0-M3.jar"
     ]
 }
