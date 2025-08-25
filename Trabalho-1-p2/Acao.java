@@ -8,6 +8,12 @@ public class Acao {
     private List<Investidor> observadores = new ArrayList<>();
 
     public Acao(String nome, double valor) {
+        if (nome == null || nome.isEmpty()) {
+            throw new IllegalArgumentException("Nome da ação não pode ser vazio.");
+        }
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Valor da ação deve ser positivo.");
+        }
         this.nome = nome;
         this.valor = valor;
     }
@@ -21,17 +27,29 @@ public class Acao {
     }
 
     public void registrarOrdem(Ordem ordem) {
+        if (ordem == null) {
+            throw new OrdemInvalidaException("Ordem não pode ser nula.");
+        }
+        if (ordem.getValor() <= 0) {
+            throw new OrdemInvalidaException("Valor da ordem deve ser positivo.");
+        }
         ordens.add(ordem);
         processarOrdens();
     }
 
     public void inscrever(Investidor investidor) {
+        if (investidor == null) {
+            throw new IllegalArgumentException("Investidor não pode ser nulo.");
+        }
         if (!observadores.contains(investidor)) {
             observadores.add(investidor);
         }
     }
 
     public void cancelarInscricao(Investidor investidor) {
+        if (investidor == null) {
+            throw new IllegalArgumentException("Investidor não pode ser nulo.");
+        }
         observadores.remove(investidor);
     }
 
