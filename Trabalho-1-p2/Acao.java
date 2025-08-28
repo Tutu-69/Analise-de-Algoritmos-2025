@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Acao {
+public class Acao implements Subject {
     private String nome;
     private double valor;
     private List<Ordem> ordens = new ArrayList<>();
-    private List<Investidor> observadores = new ArrayList<>();
+    private List<Observer> observers = new ArrayList<>();
 
     public Acao(String nome, double valor) {
         if (nome == null || nome.isEmpty()) {
@@ -37,25 +37,22 @@ public class Acao {
         processarOrdens();
     }
 
-    public void inscrever(Investidor investidor) {
-        if (investidor == null) {
-            throw new IllegalArgumentException("Investidor não pode ser nulo.");
-        }
-        if (!observadores.contains(investidor)) {
-            observadores.add(investidor);
-        }
+    @Override
+    public void registerObserver(Observer o) {
+        if (o == null) throw new IllegalArgumentException("Observer não pode ser nulo.");
+        if (!observers.contains(o)) observers.add(o);
     }
 
-    public void cancelarInscricao(Investidor investidor) {
-        if (investidor == null) {
-            throw new IllegalArgumentException("Investidor não pode ser nulo.");
-        }
-        observadores.remove(investidor);
+    @Override
+    public void removeObserver(Observer o) {
+        if (o == null) throw new IllegalArgumentException("Observer não pode ser nulo.");
+        observers.remove(o);
     }
 
-    private void notificarObservadores() {
-        for (Investidor investidor : observadores) {
-            investidor.notificar(this);
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update(this);
         }
     }
 
@@ -79,7 +76,7 @@ public class Acao {
                     this.valor = venda.getValor();
                     ordens.remove(compra);
                     ordens.remove(venda);
-                    notificarObservadores();
+                    notifyObservers();
                     compras.remove(compra);
                     vendas.remove(venda);
                     break;

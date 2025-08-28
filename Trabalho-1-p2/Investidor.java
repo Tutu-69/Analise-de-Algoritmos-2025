@@ -1,28 +1,12 @@
-public class Investidor {
+public class Investidor implements Observer {
     private String nome;
 
     public Investidor(String nome) {
         this.nome = nome;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void registrarOrdem(Acao acao, Ordem ordem) {
-        acao.registrarOrdem(ordem);
-    }
-
-    public void inscreverAcao(Acao acao) {
-        acao.inscrever(this);
-    }
-
-    public void cancelarInscricaoAcao(Acao acao) {
-        acao.cancelarInscricao(this);
-    }
-
-    public void notificar(Acao acao) {
-        System.out.println("Investidor " + nome + " recebeu notificação: valor de "
-                + acao.getNome() + " é " + acao.getValor());
+    @Override
+    public void update(Acao acao) {
+        System.out.println("Investidor " + nome + " notificado: Nova cotação da ação " + acao.getNome() + " = " + acao.getValor());
     }
 }

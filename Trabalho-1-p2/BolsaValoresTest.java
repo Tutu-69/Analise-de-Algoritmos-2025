@@ -17,27 +17,26 @@ public class BolsaValoresTest {
 
     @Test
     void testRegistrarOrdemCompraVenda() {
-        investidor1.registrarOrdem(acao, new OrdemDeCompra(investidor1, 30.0));
-        investidor2.registrarOrdem(acao, new OrdemDeVenda(investidor2, 25.0));
+        acao.registrarOrdem(new OrdemDeCompra(investidor1, 30.0));
+        acao.registrarOrdem(new OrdemDeVenda(investidor2, 25.0));
 
         assertEquals(25.0, acao.getValor());
     }
 
     @Test
     void testNotificacaoInvestidor() {
+        acao.registerObserver(investidor1);
 
-        investidor1.inscreverAcao(acao);
-
-        investidor1.registrarOrdem(acao, new OrdemDeCompra(investidor1, 30.0));
-        investidor2.registrarOrdem(acao, new OrdemDeVenda(investidor2, 25.0));
+        acao.registrarOrdem(new OrdemDeCompra(investidor1, 30.0));
+        acao.registrarOrdem(new OrdemDeVenda(investidor2, 25.0));
 
         assertEquals(25.0, acao.getValor());
     }
 
     @Test
     void testInscricaoECancelamento() {
-        investidor1.inscreverAcao(acao);
-        investidor1.cancelarInscricaoAcao(acao);
+        acao.registerObserver(investidor1);
+        acao.removeObserver(investidor1);
 
         assertDoesNotThrow(() -> acao.registrarOrdem(new OrdemDeCompra(investidor1, 30.0)));
     }
