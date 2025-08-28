@@ -38,21 +38,21 @@ public class Acao implements Subject {
     }
 
     @Override
-    public void registerObserver(Observer o) {
-        if (o == null) throw new IllegalArgumentException("Observer não pode ser nulo.");
-        if (!observers.contains(o)) observers.add(o);
+    public void registerObserver(Observer observer) {
+        if (observer == null) throw new IllegalArgumentException("Observer não pode ser nulo.");
+        if (!observers.contains(observer)) observers.add(observer);
     }
 
     @Override
-    public void removeObserver(Observer o) {
-        if (o == null) throw new IllegalArgumentException("Observer não pode ser nulo.");
-        observers.remove(o);
+    public void removeObserver(Observer observer) {
+        if (observer == null) throw new IllegalArgumentException("Observer não pode ser nulo.");
+        observers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        for (Observer o : observers) {
-            o.update(this);
+        for (Observer observer : observers) {
+            observer.update(this);
         }
     }
 
