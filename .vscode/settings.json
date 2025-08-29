@@ -9,5 +9,6 @@
         "c:\\Users\\arthu\\Documents\\Analise de Algoritmos\\lib\\junit-platform-console-standalone-1.13.0-M3.jar",
         "test-lib2\\**\\*.jar",
         "test-lib\\**\\*.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
