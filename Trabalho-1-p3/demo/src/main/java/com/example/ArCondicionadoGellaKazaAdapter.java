@@ -31,7 +31,15 @@ public class ArCondicionadoGellaKazaAdapter implements ArCondicionadoInterface {
 
     @Override
     public void definirTemperatura(int temperatura) {
-        
+        int atual = arCondicionado.getTemperatura();
+        while (atual < temperatura) {
+            arCondicionado.aumentarTemperatura();
+            atual = arCondicionado.getTemperatura();
+        }
+        while (atual > temperatura) {
+            arCondicionado.diminuirTemperatura();
+            atual = arCondicionado.getTemperatura();
+        }
     }
 
     

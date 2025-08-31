@@ -11,4 +11,18 @@ public class Sistema {
         this.arCondicionado = arCondicionado;
     }
 
+    // Modo Sono: desliga ar-condicionado e luzes, fecha persiana
+    public void modoSono() {
+        lampada.desligar();
+        arCondicionado.desligar();
+        persiana.fechar();
+    }
+
+    // Modo Trabalho: liga luzes e ar-condicionado, ajusta temperatura para 25, abre persiana
+    public void modoTrabalho() {
+        lampada.ligar();
+        arCondicionado.ligar();
+        arCondicionado.definirTemperatura(25);
+        persiana.abrir();
+    }
 }
