@@ -10,6 +10,7 @@ public class Sistema {
         this.persiana = persiana;
         this.arCondicionado = arCondicionado;
     }
+    
 
     // Modo Sono: desliga ar-condicionado e luzes, fecha persiana
     public void modoSono() {
